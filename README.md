@@ -68,9 +68,11 @@ kore-manager/
 │   └── server.js       # Ponto de entrada da aplicação
 ├── .env.example        # Exemplo das variáveis de ambiente
 ├── .gitignore          # Arquivos ignorados pelo Git
-└── package.json        # Dependências e scripts do projeto
+└── package.json        # Dependências e scripts do projeto.
 
-📬 Contato
+```
+
+##📬 Contato
 Felipe
 
 E-mail: dev.felipesampaio@gmail.com
