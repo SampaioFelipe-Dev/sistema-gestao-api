@@ -1,0 +1,72 @@
+PUT http://localhost:3000/produtos/1
+Content-Type: application/json
+
+{
+  "nome": "Roda Esportiva Palio",
+  "descricao": "Aro 15, modelo liga leve original",
+  "preco": "1300.00",
+  "estoque": 4,
+  "foto_url": "https://imgs.search.brave.com/qgIboKt5jEw9beC9Trz13-df76WL-peQPzqTyab4__4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/b2x4LmNvbS5ici90/aHVtYnM3MDB4NTAw/Lzc0Lzc0MzU5Mzcx/ODc3NTQyMS53ZWJw",
+  "sku": "ROD-PAL-001"
+}
+
+### Criar um cliente novo
+POST http://localhost:3000/clientes
+Content-Type: application/json
+
+{
+  "nome": "João da Silva",
+  "email": "joao.silva@example.com",
+  "telefone": "(11) 99999-9999",
+  "cep": "01001-000",
+  "rua": "Praça da Sé",
+  "numero": "100",
+  "bairro": "Sé",
+  "cidade": "São Paulo",
+  "estado": "SP",
+  "senha": "senha123"
+}
+
+### deletar um cliente pelo id
+DELETE http://localhost:3000/clientes/7
+
+### atualizar um cliente pelo id
+PUT http://localhost:3000/clientes/7
+Content-Type: application/json
+
+{
+  "nome": "João da Silva Atualizado",
+  "email": "joao.silva.atualizado@example.com",
+  "telefone": "(11) 99999-8888",
+  "cep": "01001-000",
+  "rua": "Praça da Sé",
+  "numero": "100",
+  "bairro": "Sé",
+  "cidade": "São Paulo",
+  "estado": "SP"
+}
+
+### criar um pedido (a venda)
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+  "cliente_id": 8,
+  "produto_id": 1,
+  "quantidade": 2,
+  "total": 1500.00
+}
+
+### deletar um pedido pelo id
+DELETE http://localhost:3000/pedidos/6
+
+### atualizar um pedido pelo id
+PUT http://localhost:3000/pedidos/6
+Content-Type: application/json
+
+{
+  "cliente_id": 6,
+  "produto_id": 1,
+  "quantidade": 2,
+  "total": 2600.00
+}
