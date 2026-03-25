@@ -55,6 +55,8 @@ $ npm install
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev
 
+```
+
 ## 🗂️ Estrutura do Projeto
 ```text
 kore-manager/
