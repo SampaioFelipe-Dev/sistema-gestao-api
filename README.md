@@ -54,3 +54,26 @@ $ npm install
 
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev
+
+## 🗂️ Estrutura do Projeto
+```text
+kore-manager/
+├── src/
+│   ├── controllers/    # Lógica de controle das rotas
+│   ├── models/         # Schemas do Drizzle ORM
+│   ├── routes/         # Definição dos endpoints da API
+│   ├── views/          # Páginas HTML/CSS/JS do frontend
+│   └── server.js       # Ponto de entrada da aplicação
+├── .env.example        # Exemplo das variáveis de ambiente
+├── .gitignore          # Arquivos ignorados pelo Git
+└── package.json        # Dependências e scripts do projeto
+
+📬 Contato
+Felipe
+
+E-mail: dev.felipesampaio@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/felipe-sampaio-37b368233/
+ 
+
+GitHub: https://github.com/SampaioFelipe-Dev
