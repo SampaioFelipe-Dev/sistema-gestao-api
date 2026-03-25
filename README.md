@@ -72,7 +72,7 @@ kore-manager/
 
 ```
 
-##📬 Contato
+📬 Contato
 Felipe
 
 E-mail: dev.felipesampaio@gmail.com
