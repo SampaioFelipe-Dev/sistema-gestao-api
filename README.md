@@ -39,7 +39,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 
 ```bash
 # Clone este repositório
-$ git clone [https://github.com/SEU-USUARIO/kore-manager.git](https://github.com/SEU-USUARIO/kore-manager.git)
+$ git clone https://github.com/SampaioFelipe-Dev/sistema-gestao-api.git
 
 # Acesse a pasta do projeto no terminal
 $ cd kore-manager
