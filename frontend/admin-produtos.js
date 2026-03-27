@@ -5,7 +5,7 @@ document.querySelector('#adminForm').addEventListener('submit', async (event) =>
     const dadosEmpacotados = Object.fromEntries(formData);
     console.log(dadosEmpacotados);
     try {
-        const response = await fetch('http://localhost:3000/produtos', {
+        const response = await fetch('/produtos', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,7 +39,7 @@ async function excluirProduto(id) {
     const confirmacao = confirm("Deseja realmente excluir este produto?");
     if (confirmacao) {
         try {
-            const response = await fetch(`http://localhost:3000/produtos/${id}`, {
+            const response = await fetch(`/produtos/${id}`, {
                 method: 'DELETE',
             });
             if (response.ok) {

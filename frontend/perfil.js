@@ -17,7 +17,7 @@ if (!clienteId) {
 // 3. Função que busca no servidor
 async function buscarPedidosDoCliente() {
     // USAR A ROTA FILTRADA COM O ID
-    const response = await fetch(`http://localhost:3000/meus-pedidos/${clienteId}`);
+    const response = await fetch(`/meus-pedidos/${clienteId}`);
     const pedidos = await response.json();
     
     desenharPedidosNaTela(pedidos);
