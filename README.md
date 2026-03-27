@@ -77,7 +77,7 @@ Felipe
 
 E-mail: dev.felipesampaio@gmail.com
 
-LinkedIn: https://www.linkedin.com/in/felipe-sampaio-37b368233/
+LinkedIn: https://www.linkedin.com/in/sampaiofelipe-dev/
  
 
 GitHub: https://github.com/SampaioFelipe-Dev
