@@ -1,4 +1,4 @@
-import {pgTable, serial, varchar, text, decimal, integer, timestamp, PgRole} from "drizzle-orm/pg-core";
+import {pgTable, serial, varchar, text, decimal, integer, numeric, timestamp, PgRole} from "drizzle-orm/pg-core";
 export const clientes = pgTable("clientes", {
   id: serial("id").primaryKey(), 
   nome: varchar("nome", { length: 255 }).notNull(), 
@@ -22,12 +22,13 @@ export const produtos = pgTable("produtos", {
   foto_url: varchar("foto_url", { length: 255 }),
   sku: varchar("sku", { length: 100 }).notNull().unique()
 });
-export const pedidos = pgTable("pedidos", {
-  id: serial("id").primaryKey(),
-  cliente_id: integer("cliente_id").notNull().references(() => clientes.id, { onDelete: "cascade" }),
-  data_pedido: timestamp("data_pedido").notNull().defaultNow(),
-  status: varchar("status", { length: 20 }).notNull().default("pendente"),
-  produto_id: integer("produto_id").notNull().references(() => produtos.id, { onDelete: "cascade" }),
-quantidade: integer("quantidade").notNull().default(1),
-total: decimal("total", { precision: 10, scale: 2 }).notNull() 
-})
+export const pedidos = pgTable('pedidos', {
+    id: serial('id').primaryKey(),
+    venda_id: text('venda_id').notNull(),
+    cliente_id: integer('cliente_id').references(() => clientes.id),
+    produto_id: integer('produto_id').references(() => produtos.id),
+    quantidade: integer('quantidade').notNull(),
+    total: numeric('total', { precision: 10, scale: 2 }).notNull(),
+    status: text('status').default('Aprovado'),
+    motivo_cancelamento: text('motivo_cancelamento'),
+});

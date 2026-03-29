@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produto | Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fundo-neomorfico">
+
+    <div class="content painel-admin">
+        <div class="text">Novo Produto</div>
+        
+        <form id="formAdicionarProduto" class="form-grid">
+            <div class="field">
+                <input type="text" id="nomeProduto" name="nome" class="input" required placeholder=" ">
+                <label for="nomeProduto" class="label">Nome do Produto</label>
+            </div>
+
+            <div class="field">
+                <input type="text" id="skuProduto" name="sku" class="input" required placeholder=" ">
+                <label for="skuProduto" class="label">SKU (Código)</label>
+            </div>
+
+            <div class="field">
+                <input type="number" step="0.01" id="precoProduto" name="preco" class="input" required placeholder=" ">
+                <label for="precoProduto" class="label">Preço (R$)</label>
+            </div>
+
+            <div class="field">
+                <input type="number" id="estoqueProduto" name="estoque" class="input" required placeholder=" ">
+                <label for="estoqueProduto" class="label">Estoque Disponível</label>
+            </div>
+
+            <div class="field campo-largo">
+                <input type="text" id="urlImagem" name="foto_url" class="input" required placeholder=" ">
+                <label for="urlImagem" class="label">URL da Imagem</label>
+            </div>
+
+            <div class="field campo-largo">
+                <input type="text" id="descricaoProduto" name="descricao" class="input" required placeholder=" ">
+                <label for="descricaoProduto" class="label">Descrição do Produto</label>
+            </div>
+
+            <div class="botoes-acao-cadastro">
+                <button type="submit" class="button btn-largo">CADASTRAR PRODUTO</button>
+                <a href="dashboard-admin.html" class="btn-link-cancelar">CANCELAR E VOLTAR</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="cadastrar-produto.js"></script>
+</body>
+</html>

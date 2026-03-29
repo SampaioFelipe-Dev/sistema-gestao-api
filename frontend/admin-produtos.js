@@ -1,53 +1,99 @@
-document.querySelector('#adminForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    console.log('Formulário enviado');
-    const formData = new FormData(event.target);
-    const dadosEmpacotados = Object.fromEntries(formData);
-    console.log(dadosEmpacotados);
+let idParaExcluir = null;
+
+async function carregarProdutos() {
+    const container = document.getElementById('lista-produtos-admin');
+    if (!container) return;
     try {
-        const response = await fetch('/produtos', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dadosEmpacotados)
+        const response = await fetch('/produtos');
+        const produtos = await response.json();
+        container.innerHTML = '';
+        produtos.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'card-admin-produto';
+            card.innerHTML = `
+            <img src="${p.foto_url}" alt="${p.nome}" style="width: 100%; height: 140px; object-fit: contain; margin-bottom: 10px; border-radius: 8px; background-color: #f8f9fa; padding: 5px;">
+            <div class="preco-admin">R$ ${Number(p.preco).toFixed(2)}</div>
+            <h3>${p.nome}</h3>
+            <p>Estoque: ${p.estoque}</p>
+            <div class="acoes-admin">
+                <button class="btn-acao btn-editar" onclick="abrirModalEdicao(${p.id})">📝 EDITAR</button>
+                <button class="btn-acao btn-deletar" onclick="abrirModalExclusao(${p.id})">🗑️ EXCLUIR</button>
+                </div>
+            `;
+            container.appendChild(card);
         });
-const divproduto = document.createElement('div');
-divproduto.innerHTML = `
-<p>${produto.nome} - R$ ${produto.preco}</p>
-<button class="btn-excluir" data-id="${produto.id}"</button>
-`;
-arealista.appendChild(divproduto);
-const botao = divProduto.querySelector('.btn-excluir');
-botao.addEventListener('click', () => {
-    excluirProduto(produto.id);
-});
-if (response.ok) {
-    const data = await response.json();
-    console.log('Produto cadastrado com sucesso:', data);
-    alert('Produto cadastrado com sucesso!');
-    event.target.reset();
-} else {    console.error('Erro ao cadastrar produto:', response.statusText);
-    alert('Erro ao cadastrar produto');
-}
-    } catch (error) {
-        console.error('Erro ao cadastrar produto:', error);
-        alert('Erro ao cadastrar produto');
+    } catch (e) {
+        console.error(e);
     }
-});
-async function excluirProduto(id) {
-    const confirmacao = confirm("Deseja realmente excluir este produto?");
-    if (confirmacao) {
-        try {
-            const response = await fetch(`/produtos/${id}`, {
-                method: 'DELETE',
-            });
-            if (response.ok) {
-                alert("Produto removido!");
-                location.reload();
-            }
-        } catch (error) {
-            console.error("Erro na conexão:", error);
+}
+
+function abrirModalExclusao(id) {
+    idParaExcluir = id;
+    document.getElementById('modal-confirmar-exclusao').style.display = 'block';
+}
+
+function fecharModalExclusao() {
+    document.getElementById('modal-confirmar-exclusao').style.display = 'none';
+    idParaExcluir = null;
+}
+
+async function abrirModalEdicao(id) {
+    try {
+        const res = await fetch(`/produtos/${id}`);
+        const p = await res.json();
+        document.getElementById('edit-id').value = p.id;
+        document.getElementById('edit-nome').value = p.nome;
+        document.getElementById('edit-sku').value = p.sku;
+        document.getElementById('edit-preco').value = p.preco;
+        document.getElementById('edit-estoque').value = p.estoque;
+        document.getElementById('edit-foto_url').value = p.foto_url;
+        document.getElementById('edit-descricao').value = p.descricao;
+        document.getElementById('modal-editar').style.display = 'block';
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+function fecharModalEdicao() {
+    document.getElementById('modal-editar').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('btn-fechar-modal')?.addEventListener('click', fecharModalEdicao);
+
+    document.getElementById('btn-confirmar-delete')?.addEventListener('click', async () => {
+        if (!idParaExcluir) return;
+        await fetch(`/produtos/${idParaExcluir}`, { method: 'DELETE' });
+        fecharModalExclusao();
+        carregarProdutos();
+    });
+
+    document.getElementById('form-editar-modal')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('edit-id').value;
+        const dados = {
+            nome: document.getElementById('edit-nome').value,
+            sku: document.getElementById('edit-sku').value,
+            preco: Number(document.getElementById('edit-preco').value),
+            estoque: Number(document.getElementById('edit-estoque').value),
+            foto_url: document.getElementById('edit-foto_url').value,
+            descricao: document.getElementById('edit-descricao').value
+        };
+        const res = await fetch(`/produtos/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        });
+        if (res.ok) {
+            fecharModalEdicao();
+            carregarProdutos();
         }
-    }
-}
+    });
+
+    document.getElementById('btn-sair-admin')?.addEventListener('click', () => {
+        localStorage.clear();
+        window.location.href = 'login.html';
+    });
+});
+
+carregarProdutos();

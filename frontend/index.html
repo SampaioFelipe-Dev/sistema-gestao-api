@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home | LOJA TESTE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <button id="btnBuscar">Buscar Produtos</button>
-    <a href="perfil.html"><button id="btnPerfil">Meu Perfil</button></a>
-    <div id="container-principal">
-    </div>
+<body class="fundo-neomorfico">
+
+    <header class="header-loja">
+        <h1 class="logo authoritative-text">LOJA TESTE</h1>
+        <nav class="nav-topo">
+            <button id="btnBuscar" class="btn-nav">VER CATÁLOGO</button>
+            <a href="perfil.html" class="btn-nav">MEU PERFIL</a>
+        </nav>
+    </header>
+
+    <main id="container-principal">
+        <div class="hero-section">
+            <h2 class="authoritative-text">Qualidade com Autoridade.</h2>
+            <p>Explore as melhores rodas do mercado para o seu projeto.</p>
+        </div>
+    </main>
+
     <div id="carrinho-flutuante">
-        <h3>Carrinho</h3>
-        <div id="lista-itens"></div>
-        <p>Total: R$ <span id="total-carrinho">0.00</span></p>
-        <button id="btn-finalizar">Finalizar Compra</button>
+        <h3>🛒 Meu Carrinho</h3>
+        <div id="lista-itens">
+            </div>
+        <hr>
+        <div class="total-area">
+            <strong>Total: R$ <span id="total-carrinho">0.00</span></strong>
+        </div>
+        <button id="btn-finalizar">FINALIZAR COMPRA</button>
     </div>
 
+    <div id="toast-container"></div>
+
     <script src="script.js"></script>
-    
 </body>
 </html>

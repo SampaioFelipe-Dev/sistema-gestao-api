@@ -3,24 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
+    <title>Criar Conta | Loja de Rodas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <form id="cadastroForm">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" name="telefone" required>
-        <br>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required>
-        <br>
-        <button type="submit">Cadastrar</button>
-    </form>
-<script src="cadastro.js"></script>
+<body class="fundo-neomorfico">
+
+    <div class="content">
+        <div class="text">Cadastro</div>
+        
+        <form id="cadastroForm">
+            <div class="field">
+                <span class="span">👤</span>
+                <input type="text" id="nome" name="nome" class="input" required placeholder=" ">
+                <label for="nome" class="label">Nome Completo</label>
+            </div>
+
+            <div class="field">
+                <span class="span">📧</span>
+                <input type="email" id="email" name="email" class="input" required placeholder=" ">
+                <label for="email" class="label">E-mail</label>
+            </div>
+
+            <div class="field">
+                <span class="span">🔒</span>
+                <input type="password" id="senha" name="senha" class="input" required placeholder=" ">
+                <label for="senha" class="label">Crie uma Senha</label>
+            </div>
+
+            <button type="submit" id="btn-cadastrar" class="button">CADASTRAR</button>
+            
+            <div class="sign-up">
+                Já faz parte da nossa loja? 
+                <a href="login.html">Faça Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="cadastro.js"></script>
 </body>
 </html>

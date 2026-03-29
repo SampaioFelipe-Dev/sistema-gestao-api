@@ -1,6 +1,5 @@
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log('Formulário de login enviado');
     
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
@@ -12,28 +11,44 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             body: JSON.stringify({ email, senha })
         });
 
+        const data = await response.json();
+
         if (response.ok) {
-            const dadosDoServidor = await response.json();
-
-            localStorage.setItem('clienteId', dadosDoServidor.clienteid);
-            localStorage.setItem('clienteNome', dadosDoServidor.nome);
-            localStorage.setItem('userRole', dadosDoServidor.role);
+            localStorage.setItem('clienteId', data.clienteid);
+            localStorage.setItem('clienteNome', data.nome);
+            localStorage.setItem('userRole', data.role);
             
-            alert(dadosDoServidor.message); 
-
-            if (dadosDoServidor.role.trim() === 'admin') {
-                window.location.href = 'dashboard-admin.html';
-            } else {
-                window.location.href = 'index.html';
-            }
-
+            mostrarNotificacao(data.message);
+            
+            setTimeout(() => {
+                window.location.href = data.role.trim() === 'admin' 
+                    ? 'dashboard-admin.html' 
+                    : 'index.html';
+            }, 1500);
         } else {
-            const erroDoServidor = await response.json();
-            alert(erroDoServidor.error || 'Senha ou email incorretos.'); 
+            mostrarNotificacao(data.error || 'Credenciais inválidas', 'danger'); 
         }
-
     } catch (error) {
-        console.error('Erro de conexão:', error);
-        alert('Servidor fora do ar ou erro de rede!');
+        mostrarNotificacao('Erro de conexão com o servidor', 'danger');
     }
-}); 
+});
+
+function mostrarNotificacao(mensagem, tipo = 'success') {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast ${tipo === 'danger' ? 'danger' : ''}`;
+    toast.innerHTML = `${tipo === 'success' ? '✅' : '❌'} ${mensagem}`;
+    
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.5s ease forwards';
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}

@@ -1,35 +1,26 @@
-document.getElementById('cadastroForm').addEventListener('submit', async (e) => {
+document.getElementById('formAdicionarProduto').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
+    data.preco = Number(data.preco);
+    data.estoque = Number(data.estoque);
 
     try {
-        const response = await fetch('/clientes', {
+        const response = await fetch('/produtos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
 
         if (response.ok) {
-            const result = await response.json();
-
-            localStorage.setItem('clienteId', result.clienteid);
-            localStorage.setItem('clienteNome', result.nome);
-            localStorage.setItem('userRole', result.role);
-
-            mostrarNotificacao(result.message);
-
+            mostrarNotificacao("Produto adicionado ao catálogo!");
             setTimeout(() => {
-                if (result.role.trim() === 'admin') {
-                    window.location.href = 'dashboard-admin.html';
-                } else {
-                    window.location.href = 'index.html';
-                }
+                window.location.href = 'dashboard-admin.html';
             }, 1500);
         } else {
-            const err = await response.json();
-            mostrarNotificacao(err.error || "Erro ao realizar cadastro", 'danger');
+            const erro = await response.json();
+            mostrarNotificacao(erro.error || "Falha ao cadastrar produto", 'danger');
         }
     } catch (error) {
         mostrarNotificacao("Erro de conexão com o servidor", 'danger');
