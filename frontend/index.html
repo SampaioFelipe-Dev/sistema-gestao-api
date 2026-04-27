@@ -14,6 +14,10 @@
         <nav class="nav-topo">
             <button id="btnBuscar" class="btn-nav">VER CATÁLOGO</button>
             <a href="perfil.html" class="btn-nav">MEU PERFIL</a>
+            <button id="btn-abrir-carrinho" class="btn-nav">
+                🛒 Ver Carrinho <span id="contador-carrinho">0</span>
+            </button>
+
         </nav>
     </header>
 
@@ -23,8 +27,8 @@
             <p>Explore as melhores rodas do mercado para o seu projeto.</p>
         </div>
     </main>
-
-    <div id="carrinho-flutuante">
+<div id="carrinho-flutuante">
+        <button id="btn-fechar-carrinho" class="btn-danger" style="float: right; padding: 5px 10px; font-weight: bold; border-radius: 5px; cursor: pointer;">X</button>
         <h3>🛒 Meu Carrinho</h3>
         <div id="lista-itens">
             </div>
@@ -36,6 +40,7 @@
     </div>
 
     <div id="toast-container"></div>
+    <div id="overlay-carrinho"></div>
 
     <script src="script.js"></script>
 </body>

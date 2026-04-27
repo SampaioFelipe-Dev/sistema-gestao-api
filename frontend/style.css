@@ -2,14 +2,15 @@ body {
     background-color: #cbcfd0;
     margin: 0;
     font-family: sans-serif;
+    box-sizing: border-box;
 }
 #container-principal {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 280px); 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 30px;
     padding: 20px;
     max-width: 1200px;
-    margin: 0; 
+    margin: 0 auto; 
     justify-content: start;
 }
 .card {
@@ -35,14 +36,18 @@ body {
 }
 #carrinho-flutuante {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    top: 0;
+    height: 100vh ;
+    right: -400px;
+    transition: right 0.4s ease;
     width: 300px;
     background-color: var(--bg-color);
     padding: 20px;
-    border-radius: 20px;
     box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
-    z-index: 9999;
+    z-index: 99999;
+}
+#carrinho-flutuante.carrinho-aberto {
+    right: 0;
 }
 #carrinho-flutuante h3 {
     margin-top: 0;
@@ -54,7 +59,7 @@ body {
 }
 #btn-finalizar {
     width: 100%;
-    background-color: #28a745; /* Verde para destacar a finalização */
+    background-color: #28a745; 
     color: white;
     border: none;
     padding: 12px;
@@ -504,7 +509,7 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 9999;
+    z-index: 1000000;
 }
 
 .toast {
@@ -521,6 +526,7 @@ body {
     gap: 10px;
     border-left: 5px solid #002aff;
     animation: slideIn 0.5s ease forwards;
+    z-index: 1000000;
 }
 
 .toast.danger {
@@ -718,3 +724,102 @@ body {
 }
 
 .btn-perigo:hover { background: #c82333; transform: scale(1.02); }
+@media (max-width: 768px) {
+    #container-principal {
+        justify-content: center;
+        padding: 10px; 
+    }
+    #carrinho-flutuante {
+        width: 100%;
+    }
+    .acoes-topo {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+}
+#overlay-carrinho {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 99998;
+    display: none;
+}
+#overlay-carrinho.overlay-ativo {
+    display: block;
+}
+#contador-carrinho {
+    background-color: #ff0000;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    margin-left: 8px;
+    position: relative;
+    top: -5px;
+}
+#items-carrinho {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.item-carrinho-grid {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 15px;
+    align-items: center;
+    margin: 10px 0;
+}
+.img-carrinho {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    background-color: transparent;
+    border-radius: 5px;
+}
+.info-carrinho {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+#carrinho-flutuante .info-carrinho p {
+    font-family: 'Pirata One', cursive !important;
+    font-size: 1.2rem !important;
+    color: #000000 !important;
+    line-height: 1;
+}
+#carrinho-flutuante .info-carrinho p.preco-carrinho {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1rem !important;
+    color: #666 !important;
+}
+.quantidade-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.quantidade-controls button {
+    background-color: #6f7594;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.quantidade-controls button:hover {
+    background-color: #1bb9dd;
+}
+.quantidade-carrinho {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #000000;
+}
