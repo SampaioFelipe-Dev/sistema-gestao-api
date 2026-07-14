@@ -24,9 +24,9 @@ Este projeto foi arquitetado com foco em escalabilidade, boas práticas de códi
 
 - [x] **Gestão de Produtos:** Cadastro, edição, exclusão e listagem de itens.
 - [x] **Dashboard Administrativo:** Painel central para visão geral do negócio.
-- [ ] **Carrinho de Compras:** Fluxo completo de seleção e checkout.
-- [ ] **Controle de Estoque:** Baixa automática de itens após a venda.
-- [ ] **Gestão de Clientes:** Histórico de compras e dados cadastrais.
+- [x] **Carrinho de Compras:** Fluxo completo de seleção e checkout.
+- [x] **Controle de Estoque:** Baixa automática de itens após a venda.
+- [x] **Gestão de Clientes:** Histórico de compras e dados cadastrais.
 
 ## 🛠️ Como rodar o projeto localmente
 
