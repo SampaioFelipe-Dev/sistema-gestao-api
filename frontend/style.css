@@ -724,24 +724,6 @@ body {
 }
 
 .btn-perigo:hover { background: #c82333; transform: scale(1.02); }
-@media (max-width: 768px) {
-    #container-principal {
-        justify-content: center;
-        padding: 10px; 
-    }
-    #carrinho-flutuante {
-        width: 100%;
-    }
-    .acoes-topo {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .logo {
-        font-size: 2.5rem;
-        text-align: center;
-    }
-}
 #overlay-carrinho {
     position: fixed;
     top: 0;
@@ -822,4 +804,48 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 0.9rem;
     color: #000000;
+}
+@media (max-width: 768px) {
+    #container-principal {
+        justify-content: center;
+        padding: 10px; 
+    }
+    #carrinho-flutuante {
+        width: 100%;
+    }
+    .acoes-topo {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .logo {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+.nav-topo {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.fundo-neomorfico {
+    flex-direction: column;
+}   
+.card, .card-produto {
+    width: 100%;
+    max-width: 300px;
+}
+.item-carrinho-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    margin: auto;
+}
+.img.img-carrinho {
+    margin: 0 auto;
+}
+#container-principal {
+    grid-template-columns: 1fr;
+}
+#carrinho-flutuante {
+    width: 100%;
+    box-sizing: border-box;
+}
 }
